@@ -1,0 +1,46 @@
+Assignment-3
+
+#write a function to check wether input string is palindrome
+
+def pal(a):
+    l = ''
+    for i in a:
+        l=i+l       
+    return l
+x=input("enter the string")
+print(pal(x))
+if pal(x)==x:
+    print("is palindrom")
+else:
+    print("not palinddrom")
+    
+#assignment3
+#write a funtion to find the factorial of a number
+def fact(a):
+    if(a==0):
+        print("l")
+    else:
+        for i in range(2,a):
+            a=a*i
+    return a
+x=int(input("enter the value"))
+print(fact(x))
+
+
+#assignment3
+'''
+#write a function to find the fibonacci series of the number
+def fibo(a):
+    if a<=1:
+        return a
+    else:
+        return fibo(a-1)+fibo(a-2)
+m=int(input("enter the number of fibonacci series:"))
+if(m<=0):
+    print("enter a valid input")
+else:
+    for i in range(m):
+        print(fibo(i),end=" ")
+
+
+
