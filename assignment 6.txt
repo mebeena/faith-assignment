@@ -1,0 +1,64 @@
+#Assignment6
+# 1. write a function that takes two lists and returns a new list with elements that are common to both the lists.
+#the new list should not have any duplicates and input lists may be of different lengths
+'''''
+def common(a, b):
+    a_list = set(a)
+    b_list = set(b)
+
+    if (a_list & b_list):
+        print(a_list & b_list)
+    else:
+        print("No common elements")
+a=input("enter a list1")
+b=input("enter a list2")
+common(a,b)
+-------------------------------------------------------------------------------------------------------------
+# 2.The multiplicative persistance of a positive integer is the number
+ #of steps required to get a one digit number when separating the digits ang multiplying them.for example
+ #the multiplicative persistance of 39 is 3 because 39-->27-->14-->4
+
+number = int(input("enter number"))
+product = 1
+persistence = 0
+print(number)
+while number > 9:
+    for digit in range(0, len(str(number))):
+        product *= int(str(number)[digit])
+    print(product)
+    persistence += 1
+    number = product
+    product = 1
+print("persistence:", persistence)
+----------------------------------------------------------------------------------------------------------
+
+#given an positive integer n,if you aply the following rukes iteratively,you will eventually get a 1.
+#it is called collatz sequence
+#n-->n/2(if n is even)
+#n-->3*n+1(if n is odd)
+#for examplen13-->40-->20-->10->5->16->8->4->2->1
+#write a function to generate the collatz sequence.now find the starting number less than 1 million 
+#which will produce the longest chain
+'''
+    def collatz(n):
+        sequence = [n]
+        while n != 1:
+            if n % 2 == 0:
+                n = n // 2
+            else:
+                n = 3 * n + 1
+            sequence.append(n)
+        return sequence
+
+
+    max_length = 0
+    max_start = 0
+
+    for i in range(1, 1000000):
+        length = len(collatz(i))
+        if length > max_length:
+            max_length = length
+            max_start = i
+
+    print(max_start)
+--------------------------------------------------------------------------------------------------------------

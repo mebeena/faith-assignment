@@ -1,0 +1,100 @@
+#Assignment 4
+# 1.quadratic equation
+
+a=int(input("enter a value of a:"))
+b=int(input("enter a value of b:"))
+c=int(input("enter a value of c:"))
+x=((-b)+((b**2)-(4*a*c))**.5)/2*a
+y=((-b)-((b**2)-(4*a*c))**.5)/2*a
+if a==0:
+    print("error")
+elif 4*a*c>b**2:
+    print("error")
+else:
+    print("the roots are=",x,y)
+--------------------------------------------------------------------------------------------------------------
+
+
+# 2.Write a program that reads in a string on the command line and returns a table of the frequency of
+# occurrence of each word. Ignore the case. A sample run of the program would look this
+# Enter some letters &gt;&gt;&gt; The cat in the hat
+# The - 2
+# Cat - 1
+# In - 1
+# Hat - 1
+
+a=input("enter the words:")
+b=dict()
+txt=a.split(" ")
+for i in txt:
+    if i in b:
+        b[i]+=1
+    else:
+        b[i] = 1
+        print(b)
+-----------------------------------------------------------------------------------------------------
+# 3.Write a program that accepts a sentence and calculate the number of letters and digits.
+Suppose the following input is supplied to the program: hello world! 123
+Then, the output should be:
+LETTERS 10
+DIGITS 3
+
+s = input("Enter a sentence: ")
+letters = 0
+digits = 0
+for char in s:
+    if char.isalpha():
+        letters += 1
+    elif char.isdigit():
+        digits += 1
+print("LETTERS", letters)
+print("DIGITS", digits)
+------------------------------------------------------------------------------------------------------
+
+#Question 4
+# 4.Write a Python program to check the validity of a password input by the user. The password should
+satisfy the following conditions:
+a. It should have at least 1 letter [a to z]
+b. It should have at least 1 number [0 to 9]
+c. It should have at least 1 capital letter [A to Z]
+d. It should have at least one special character [$, #, @]
+e. Minimum length = 6 characters
+f. Maximum length = 12 characters
+
+import re
+text=input("enter a  password")
+if (len(re.findall('[a-z]',text)))==0:
+    print("enter a valid password")
+elif(len(re.findall('[0-9]',text)))==0:
+    print("enter a valid password")
+elif(len(re.findall('[A-Z]',text)))==0:
+    print("enter a valid password")
+elif(len(re.findall('[$,#,@]',text)))==0:
+    print("enter a valid password")
+elif(len(text)<6 or len(text)>12):
+    print("enter a valid password")
+else:
+    print("valid password")
+-----------------------------------------------------------------------------------------------------
+# question 5
+# 5 .Write a Python program that takes a string of words separated by spaces, together with a
+”target” word, and shows the position of the target word in the string of words.
+For example, if the string is: ‘we dont need no education we dont need no thought control no we dont’
+and the target word is ”dont”, then your program should return the list 1, 6, 13 because
+”dont” appears at the 1st, 6th, and 13th position in the string. Your program should return
+False if the target word doesn’t appear in the string.
+
+'''
+def find_target_positions(string, target):
+    words = string.split()
+    positions = []
+    for i, word in enumerate(words):
+        if word == target:
+            positions.append(i)
+    if not positions:
+        return False
+    return positions
+string = input("enter a string")
+target = 'dont'
+result = find_target_positions(string, target)
+print(result)

@@ -1,0 +1,212 @@
+#Assignment 5
+
+
+#1.Write a function named sort_odd_even() that will sort a list of numbers with the odd numbers
+#coming first and the even numbers coming second. You can use the list.sort function.
+
+def num(m,n,w):
+    for i in range (4):
+        m.append(int(input("enter the number")))
+    for j in m:
+        if j%2==0:
+            n.append(j)
+            n.sort()
+        else:
+            w.append(j)
+            w.sort()
+    print(w+n)
+    return num
+m=[]
+n=[]
+w=[]
+num(m,n,w)
+
+________________________________________________________________________________________________________
+
+#2. By using list comprehension, write a program to print the list after removing the value 24 in
+#[12,24,35,24,88,120,155].
+
+my_list = [12, 24, 35, 24, 88, 120, 155]
+new_list = [i for i in my_list
+            if i!=24]
+print(new_list)
+
+____________________________________________________________________________________________________________
+# 3.Use a list comprehension to square each odd number in a list. The list is input by a sequence of
+comma-separated numbers.
+
+numbers = input("Enter a sequence of comma-separated numbers: ")
+num_list = [int(num) for num in numbers.split(',')]
+squared_odds = [num**2 for num in num_list if num%2!= 0]
+print(squared_odds)
+________________________________________________________________________________________________________
+# 4.Using list comprehension, return the number of even integers in the given array.
+
+arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+count_even = len([x for x in arr if x % 2 == 0])
+print(count_even)
+____________________________________________________________________________________________________
+#12. Write a program which accepts a sequence of comma separated 4 digit binary numbers as its
+input and then check whether they are divisible by 5 or not. The numbers that are divisible by 5 are
+to be printed in a comma separated sequence.
+#Example:
+#0100,0011,1010,1001
+#Then the output should be:
+#1010
+
+a=input("Enter the 4 digit binary numbers with,separated")
+value=[]
+items=[x for x in a.split(",")]
+for p in items:
+    decimal = int(p,2)
+    print(decimal)
+    if not decimal%5:
+        value.append(p)
+print(','.join(value))
+
+-----------------------------------------------------------------------------------------------------
+#5.Use filter() to eliminate all words that are shorter than 4 letters from a list of words.
+
+
+def remove_words(list1):
+    result=list(filter(lambda s :len(s)>3,list1))
+    print(result)
+list1=['hello','world','iam']
+remove_words(list1)
+#or
+l=[x for x in input("enter the words").split(" ")]
+def shorter(y):
+    if len(y)>3: #y for iteration through list
+        return True
+    return False
+x=filter(shorter,l)
+print(list(x))
+________________________________________________________________________________________________________
+#6.Write a list comprehension statement to convert a list of Fahrenheit temperatures to Celsius
+
+x=[100,32,45,18,40]
+a=[(i-32)*5/9 for i in x]
+print(a)
+
+__________________________________________________________________________________________________________
+#7.Use map and a lambda function to convert a list of Fahrenheit temperatures to a list of Celsius temperatures
+
+l=[32,45,100,89,47]
+f=lambda t:(t-32)*5/9
+c=list(map(lambda t:(t-32)*5/9,l))
+print(c)
+
+_______________________________________________________________________________________________________
+#8. Input two lists and convert the two list to dictionary.
+
+a=[]
+b=[]
+c=int(input("enter the total input elements:"))
+for i in range(c):
+    d=input("input for list 1: ")
+    a.append(d)
+for i in range(c):
+    e=input("input for list 2 : ")
+    b.append(e)
+print(a)
+print(b)
+x=dict(zip(a,b))
+print(x)
+#or
+y={k:v for k,v in zip(a,b)}
+print(y)
+
+
+
+_____________________________________________________________________________________________________
+# 9. Make a two-player Rock-Paper-Scissors game. One of the players is the computer. 10 chances. 
+# Print out the winner and points earned by both players.
+# Remember the rules:
+# Rock beats scissors Scissors beats paper Paper beats rock
+
+import random
+import re
+player=[]
+computer=[]
+n=1
+while n<=5:
+ a=["rock","paper","scissor"]
+ player_choice=input('''enter the choice:
+                1.rock
+                2.paper
+                3.scissor
+                =>''')
+ computer_choice=random.choice(a)
+ print(player_choice)
+ print(computer_choice)
+ if player_choice==computer_choice:
+    print(f"both players seleceted {player_choice},it is tie")
+    player.append("tie")
+    computer.append("tie")
+ elif player_choice=="rock":
+    if computer_choice=="paper":
+        print("paper beats rock")
+        computer.append("win")
+    else:
+        print("rock beats scissor")
+        player.append("win")
+ elif player_choice=="paper":
+    if computer_choice=="rock":
+        print("paper beats rock")
+        player.append("win")
+    else:
+        print("scissor beats paper")
+        computer.append("win")
+ elif player_choice=="scissor":
+    if computer_choice=="rock":
+        print("rock beats scissor")
+        computer.append("win")
+    else:
+        print("scissor beats paper")
+        player.append("win")
+ n+=1
+print("player score:",player)
+print("computer score:",computer)
+if len(player)==len(computer):
+    print("match tie")
+elif len(player)>len(computer):
+    print("player wins")
+else:
+    print("computer wins")
+_____________________________________________________________________________________________________________
+
+
+# 10. Write a program which accepts a sequence of comma-separated numbers from console and generate
+#  a list and a tuple which contains every number.
+# Suppose the following input is supplied to the program:
+# 34,67,55,33,12,98
+# Then, the output should be:
+# ['34', '67', '55', '33', '12', '98']
+# ('34', '67', '55', '33', '12', '98')
+
+a=input("enter the numbers seperated by commas: ")
+b=a.split(",")
+print(b)
+print(type(b))
+c=tuple(b)
+print(tuple(b))
+print(type(c))
+
+#11. Write a program that accepts a comma separated sequence of words as input and prints the words
+ #in a comma-separated sequence after sorting them alphabetically.
+# Suppose the following input is supplied to the program:
+# without,hello,bag,world
+# Then, the output should be:
+# bag,hello,without,world
+
+
+a=input("enter the words seperated by commas:" )
+b=a.split(",")
+b.sort()
+print(b)
+for i in b:
+    print(i,end=",")
+
+
+
+
