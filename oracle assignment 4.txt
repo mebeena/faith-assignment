@@ -1,0 +1,87 @@
+/* ASSIGNMENT 4 */
+
+create table department
+(
+deptno int primary key,
+deptname varchar(30),
+location varchar(30),
+depthead varchar(20)
+);
+
+create table employee
+(
+empid int primary key,
+empname varchar(20),
+gender varchar(20),
+designation varchar(30),
+salary int,
+deptno int,
+constraint fk_emdep foreign key(deptno) references department(deptno),
+managerid int
+);
+
+insert all
+into department(deptno, deptname, location, depthead)
+values(1,'IT','London','Rick')
+into department(deptno, deptname, location, depthead)
+values(2,'PAYROLL','Delhi','Sanjay')
+into department(deptno, deptname, location, depthead)
+values(3,'HR','Newyork','Christie')
+into department(deptno, deptname, location, depthead)
+values(4,'Other Department','Syndey','Cindrella')
+select * from dual
+
+select * from department
+
+insert into employee values(1,'Tom','Male','It Manager',40000,1,NULL)
+insert into employee values(2,'Pam','Female','Software engineer',30000,1,1)
+insert into employee values(3,'John','Male','Hr Manager',35000,3,null)
+insert into employee values(4,'Sam','Male','Team Lead',45000,1,1)
+insert into employee values(5,'Todd','Male','Coordinator',28000,3,3)
+insert into employee values(6,'Ben','Male','Account Manager',70000,2,null)
+insert into employee values(8,'Ganga','Female','Accountant',48000,2,6)
+insert into employee values(9,'James','Male',null,65000,null,5)
+insert into employee values(10,'Russell','Male',null,88000,null,5)
+
+select * from employee
+select * from department
+update department set deptname='shoe' where deptno=3
+update department set location='dallas' where deptno=3
+
+/* 2. question */
+
+select e.empname as Manageremploy
+from employee e
+join employee empname
+on e.empid=empname.managerid
+
+/* 3. question */
+
+select empname,deptname, 'Every Year Mark of'||
+deptname ||'department earns amount'||(salary*12) as AnnualIncomeReport from employee
+left join department
+on employee.deptno=department.deptno
+
+/* 5. question */
+
+select deptname,empname from employee
+full join
+department
+on employee.deptno=department.deptno
+order by deptname,empname desc
+
+/* 6. question: Find out employee name and departmentname of employees who either works in a Toy or Shoe department. */
+
+select empname,deptname from employee
+join
+department
+on employee.deptno=department.deptno
+where deptname = 'toy' or deptname='shoe'
+
+/* 7. Name concatenated with department, separated by comma and space and name column Employee and department */
+
+select empname||', '||deptname as Employee_and_Department
+from employee
+full join
+department
+on employee.deptno=department.deptno
