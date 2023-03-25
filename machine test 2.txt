@@ -1,0 +1,134 @@
+/* machine Test */
+---------------------------------------------------------------------------------------
+/* table 1 */
+
+create table computer
+(
+serialnumber int primary key,
+mfname varchar(30),
+model varchar(30),
+weight number,
+employeeid int,
+condition varchar(30),
+foreign key(mfname) references manufacturer(mfname),
+foreign key(employeeid) references employee(employeeid)
+);
+drop table computer
+INSERT ALL                        
+INTO computer(serialnumber,mfname,model,weight,employeeid,condition)
+values(12,'nova','bmw',124,1,'use')
+INTO computer(serialnumber,mfname,model,weight,employeeid,condition)
+values(13,'nivan','audi',300,2,'not in use')
+INTO computer(serialnumber,mfname,model,weight,employeeid,condition)
+values(14,'norah','alto',675,3,'not in use')
+select * from dual;
+select * from computer
+***********************************************************************************************
+/*table 2 */
+
+create table employee
+(
+employeeid int primary key,
+empname varchar(30),
+phone number,
+email varchar(30),
+areacode int
+);
+drop table employee
+
+INSERT ALL                        
+INTO employee(employeeid,empname,phone,email,areacode)
+values(1,'mebi',7698876545,'mebi@gamil.com',2)                       
+INTO employee(employeeid,empname,phone,email,areacode)
+values(2,'madhu',7698976523,'madhu@gamil.com',6)
+INTO employee(employeeid,empname,phone,email,areacode)
+values(3,'manu',9856976523,'manu@gamil.com',7)
+select * from dual;
+select * from employee
+************************************************************************************
+/* table 3 */
+
+create table manufacturer
+(
+mfname varchar(30) primary key,
+city varchar(30),
+state varchar(30)
+);
+drop table manufacturer
+
+INSERT ALL                        
+INTO manufacturer(mfname,city,state)
+values('nova','tvm','kerala') 
+INTO manufacturer(mfname,city,state)
+values('nivan','mtm','tamilnadu') 
+INTO manufacturer(mfname,city,state)
+values('norah','epthurai','tamilnadu')
+select * from dual;
+
+/*manufacturers name*/
+select mfname from manufacturer where city='tvm'
+update manufacturer set state='south dakota';
+
+select * from manufacturer
+
+/*average */
+select avg(weight) from computer
+
+/*area code */
+select empname from employee where areacode like '2%'
+
+/* serial number */
+select serialnumber from computer where weight< (select avg(weight) from computer)
+
+/* manufacturer names*/
+select mfname from computer where condition in (select condition from 
+computer where condition='not in use')
+
+/* view */
+
+CREATE OR REPLACE VIEW manuf AS SELECT EmpName, 
+SerialNumber, City FROM computer m JOIN manufacturer n ON 
+m.Mfname=n.Mfname JOIN employee a ON 
+a.EmployeeId=m.EmployeeId;
+select * from manuf
+
+
+/* stored procedure */
+
+create or replace procedure computer_details(enter_id in number)
+IS
+id int;
+s_no int;
+manufacturer varchar(30);
+model varchar(30);
+weight varchar(30);
+BEGIN
+id:=ENTER_ID;
+select serialnumber,mfname,model,weight into s_no, manufacturer,model,weight FROM Computer where EmployeeID =id;
+dbms_output.put_line('Serial Number ; '||s_no|| 'Manufacturer : '||manufacturer||'Computer model ; '||computer_model||'Computer weight ; '||computer_weight);
+END;
+
+
+
+DECLARE
+id int;
+s_no int;
+manufacturer varchar(30);
+computer_model varchar(30);
+computer_weight varchar(30);
+BEGIN
+id:=:ENTER_ID;
+computer_details(id);
+END;
+
+
+
+
+
+
+
+
+
+
+
+
